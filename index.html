@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Idea Inside India · Digital Assistance & IT Services</title>
+  <!-- Font Awesome 6 (free) for crisp icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ---------- GLOBAL RESET & VARIABLES ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --brand-green: #97db8e;
+      --brand-dark: #1e1e1e;
+      --brand-gray: #2e2e2e;
+      --soft-bg: #f8faf8;
+      --text-dark: #1f2e2b;
+      --text-muted: #4a5e57;
+      --card-bg: #ffffff;
+      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.04), 0 4px 8px rgba(0, 0, 0, 0.02);
+      --shadow-hover: 0 20px 30px -10px rgba(0, 0, 0, 0.12), 0 8px 18px rgba(0, 0, 0, 0.06);
+      --radius-lg: 28px;
+      --radius-md: 18px;
+      --radius-sm: 12px;
+      --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      --font-heading: 'Roboto', Georgia, 'Times New Roman', serif;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--soft-bg);
+      color: var(--text-dark);
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: #0d1f1c;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s ease;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ---------- UTILITY & REUSABLE ---------- */
+    .section {
+      padding: 5rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-header h2 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: #0c1e1a;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-header p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--brand-green);
+      color: #0c1e1a;
+      font-weight: 600;
+      padding: 0.85rem 2.2rem;
+      border-radius: 60px;
+      box-shadow: 0 8px 16px -6px rgba(151, 219, 142, 0.4);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      font-size: 1rem;
+      letter-spacing: 0.3px;
+    }
+
+    .btn:hover {
+      background-color: #7bc972;
+      transform: translateY(-3px);
+      box-shadow: 0 18px 25px -10px rgba(151, 219, 142, 0.5);
+      color: #0b1a16;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--brand-green);
+      color: #1e3a34;
+      box-shadow: none;
+    }
+
+    .btn-outline:hover {
+      background: var(--brand-green);
+      color: #0c1e1a;
+      transform: translateY(-2px);
+    }
+
+    /* ---------- HEADER / NAVIGATION ---------- */
+    .top-bar {
+      background-color: #0d1f1c;
+      color: #dbede6;
+      padding: 0.6rem 0;
+      font-size: 0.9rem;
+    }
+
+    .top-bar .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .social-icons a {
+      color: #bcd9cf;
+      font-size: 1.1rem;
+    }
+
+    .social-icons a:hover {
+      color: var(--brand-green);
+    }
+
+    .contact-info {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-info span i {
+      margin-right: 0.5rem;
+      color: var(--brand-green);
+    }
+
+    .navbar {
+      background-color: #ffffff;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      padding: 0.8rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .logo img {
+      height: 52px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      font-weight: 500;
+      color: #1e2f2b;
+      font-size: 0.98rem;
+      padding-bottom: 0.25rem;
+      border-bottom: 2px solid transparent;
+    }
+
+    .nav-links a:hover,
+    .nav-links .active {
+      color: #0a7e6b;
+      border-bottom-color: var(--brand-green);
+    }
+
+    .search-form {
+      display: flex;
+      align-items: center;
+      background: #f0f5f2;
+      border-radius: 40px;
+      padding: 0.3rem 0.3rem 0.3rem 1rem;
+    }
+
+    .search-form input {
+      border: none;
+      background: transparent;
+      padding: 0.4rem 0;
+      font-size: 0.9rem;
+      outline: none;
+      width: 160px;
+    }
+
+    .search-form button {
+      background: var(--brand-green);
+      border: none;
+      border-radius: 40px;
+      padding: 0.4rem 1rem;
+      color: #0c1e1a;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    /* ---------- HERO SLIDER (STATIC BUT MODERN) ---------- */
+    .hero-slider {
+      background: linear-gradient(135deg, #0e231f 0%, #1b3a33 100%);
+      border-radius: 0 0 40px 40px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+
+    .slide-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 4rem;
+      min-height: 480px;
+      background-size: cover;
+      background-position: center;
+      background-blend-mode: overlay;
+      background-color: rgba(10, 25, 21, 0.65);
+      color: white;
+    }
+
+    .slide-content h2 {
+      font-size: 3.5rem;
+      font-weight: 600;
+      color: white;
+      max-width: 700px;
+      margin-bottom: 1rem;
+    }
+
+    .slide-content p {
+      font-size: 1.3rem;
+      color: #e2f0eb;
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
+
+    .slide-content .btn {
+      align-self: flex-start;
+      background: var(--brand-green);
+      color: #0b1f1a;
+      font-weight: 700;
+    }
+
+    /* ---------- SERVICE CARDS GRID ---------- */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .service-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+      border: 1px solid #e5f0eb;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--brand-green);
+    }
+
+    .service-card i {
+      font-size: 2.6rem;
+      color: var(--brand-green);
+      margin-bottom: 1.2rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+    }
+
+    .service-card p {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+
+    /* ---------- PARALLAX / CLIENTS INSIGHT ---------- */
+    .clients-insight {
+      background: #0d1f1c url('https://iitprivatelimited.com/wp-content/uploads/2016/10/bba1.jpg') center/cover no-repeat;
+      background-blend-mode: overlay;
+      border-radius: var(--radius-lg);
+      padding: 4rem 2rem;
+      text-align: center;
+      margin: 3rem 0;
+      color: white;
+      background-color: rgba(13, 31, 28, 0.85);
+    }
+
+    .clients-insight h2 {
+      color: #d2f0e6;
+      font-size: 2.2rem;
+      font-style: italic;
+      margin-bottom: 1.8rem;
+    }
+
+    .clients-insight .btn {
+      background: #ffffff;
+      color: #0d1f1c;
+    }
+
+    /* ---------- SPLIT SECTION (SERVICES OATH) ---------- */
+    .split-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .split-image img {
+      border-radius: var(--radius-md);
+      box-shadow: 0 25px 35px -10px rgba(0, 0, 0, 0.15);
+      border: 1px solid #d9eae2;
+    }
+
+    .split-text h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: #0d3129;
+    }
+
+    .split-text p {
+      color: #2a433d;
+      font-size: 1.08rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .split-text .highlight {
+      color: #0a7e6b;
+      font-weight: 600;
+    }
+
+    /* ---------- NEW IDEAS ON WEB ---------- */
+    .new-ideas {
+      background: #eef6f2;
+      border-radius: var(--radius-lg);
+      padding: 3.5rem 3rem;
+      text-align: center;
+      margin: 3rem 0;
+    }
+
+    .new-ideas h2 {
+      font-size: 2.3rem;
+      color: #0e2e27;
+      margin-bottom: 1.2rem;
+    }
+
+    .new-ideas p {
+      max-width: 900px;
+      margin: 0 auto 1.8rem;
+      font-size: 1.15rem;
+      color: #1f453c;
+    }
+
+    .new-ideas .badge-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .badge-list span {
+      background: white;
+      padding: 0.6rem 1.4rem;
+      border-radius: 40px;
+      font-weight: 500;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      color: #0b2e26;
+      border: 1px solid #cbe5db;
+    }
+
+    /* ---------- GET STARTED / 3 COLUMN ---------- */
+    .three-col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .feature-card {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 2.2rem 1.8rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid #e2f0ea;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-6px);
+    }
+
+    .feature-card img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      margin: 0 auto 1.5rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-card p {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      text-align: justify;
+    }
+
+    /* ---------- CTA BANNER ---------- */
+    .cta-banner {
+      background: linear-gradient(135deg, #0d1f1c, #1f493f);
+      border-radius: var(--radius-lg);
+      padding: 4rem 2rem;
+      text-align: center;
+      color: white;
+      margin: 3rem 0;
+    }
+
+    .cta-banner h2 {
+      font-size: 2.8rem;
+      color: white;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .cta-banner p {
+      font-size: 1.2rem;
+      color: #c3e3d8;
+      margin-bottom: 2rem;
+    }
+
+    /* ---------- FOOTER ---------- */
+    .site-footer {
+      background: #0f1f1b;
+      color: #b8d4ca;
+      padding: 4rem 0 2rem;
+      border-radius: 40px 40px 0 0;
+      margin-top: 4rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 3rem;
+    }
+
+    .footer-col h3 {
+      color: #d7f0e6;
+      font-size: 1.3rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .footer-col p {
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      color: #aecbc1;
+    }
+
+    .footer-col a {
+      color: #cce8df;
+      display: block;
+      margin-bottom: 0.7rem;
+      font-size: 0.95rem;
+    }
+
+    .footer-col a:hover {
+      color: var(--brand-green);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 1.2rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-social a {
+      background: #1f3d35;
+      width: 38px;
+      height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      color: #d4f0e5;
+      font-size: 1.1rem;
+    }
+
+    .footer-social a:hover {
+      background: var(--brand-green);
+      color: #0d1f1c;
+    }
+
+    .copyright {
+      text-align: center;
+      border-top: 1px solid #234139;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      font-size: 0.9rem;
+      color: #9bb8ae;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 1024px) {
+      .slide-content h2 {
+        font-size: 2.6rem;
+      }
+      .split-section {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .three-col {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar .container {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .nav-links {
+        justify-content: center;
+        gap: 1.2rem;
+      }
+      .search-form {
+        width: 100%;
+      }
+      .search-form input {
+        width: 100%;
+      }
+      .slide-content {
+        padding: 3rem 2rem;
+      }
+      .slide-content h2 {
+        font-size: 2rem;
+      }
+      .slide-content p {
+        font-size: 1.1rem;
+      }
+      .three-col {
+        grid-template-columns: 1fr;
+      }
+      .top-bar .container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .contact-info {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 1.2rem;
+      }
+      .section {
+        padding: 3rem 0;
+      }
+      .section-header h2 {
+        font-size: 2rem;
+      }
+      .clients-insight h2 {
+        font-size: 1.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ========== TOP BAR ========== -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="social-icons">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+      <div class="contact-info">
+        <span><i class="fas fa-phone-alt"></i> +91 9337755612</span>
+        <span><i class="fas fa-envelope"></i> info@ideainside.in</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== NAVBAR ========== -->
+  <header class="navbar">
+    <div class="container">
+      <a href="#" class="logo">
+        <img src="https://iitprivatelimited.com/wp-content/uploads/2016/10/logo-final.png" alt="Idea Inside India">
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#" class="active">Home</a></li>
+          <li><a href="#">Career @ ii</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Learning Interface</a></li>
+          <li><a href="#">Our Services</a></li>
+        </ul>
+      </nav>
+      <form class="search-form" role="search" method="get" action="#">
+        <input type="search" placeholder="Search..." aria-label="Search">
+        <button type="submit"><i class="fas fa-search"></i></button>
+      </form>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero-slider">
+    <div class="slide-content" style="background-image: url('https://iitprivatelimited.com/wp-content/themes/i-max/images/slide1.jpg');">
+      <h2>You Want a Website</h2>
+      <p>Complete Website Design and Development Solutions.</p>
+      <a href="#" class="btn">Get In for a New Idea →</a>
+    </div>
+  </section>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <div class="container">
+    <!-- IDEA BEGINS -->
+    <section class="section" style="padding-bottom: 1rem;">
+      <div class="section-header">
+        <h1 style="font-size: 3rem; color: #0c1e1a; font-weight: 600; margin-bottom: 0.5rem;">IDEA BEGINS</h1>
+        <p style="font-size: 1.25rem; color: #2d4d43; max-width: 900px;">
+          We Are Expanding our Services in making of Digitalised India Since 2007. 
+          From very beginning of the journey, we focused on the actual need of our people 
+          and provide them user friendly application with all there requirements.
+        </p>
+        <p style="font-size: 1rem; font-style: italic; margin-top: 1.5rem; color: #547a6e;">
+          CEOsPen: "The whole binary system is the father of new tech era, the great Vedic invention".
+        </p>
+      </div>
+    </section>
+
+    <!-- SERVICE CARDS (4) -->
+    <section class="section" style="padding-top: 0;">
+      <div class="services-grid">
+        <div class="service-card">
+          <i class="fas fa-code"></i>
+          <h3>Software Development</h3>
+          <p>Custom software, ERP modules, and automation solutions tailored to your business.</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-paint-brush"></i>
+          <h3>Web Design & Development</h3>
+          <p>Responsive websites, WordPress, e‑commerce, and engaging digital experiences.</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-sms"></i>
+          <h3>SMS Services</h3>
+          <p>Bulk SMS, email marketing, and real‑time communication tools for your brand.</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-mobile-alt"></i>
+          <h3>Applications Development</h3>
+          <p>Android, iOS, and cross‑platform apps built for performance and scale.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLIENTS INSIGHT / PARALLAX -->
+    <section class="clients-insight">
+      <h2>Clients Insight</h2>
+      <a href="#" class="btn">Click here →</a>
+    </section>
+
+    <!-- SPLIT: IMAGE + SERVICES OATH -->
+    <section class="section split-section">
+      <div class="split-image">
+        <img src="https://iitprivatelimited.com/wp-content/uploads/2016/10/gateway-bank-rwd2.jpg" alt="Gateway bank responsive design">
+      </div>
+      <div class="split-text">
+        <h2>::SERVICES OATH OF IDEA INSIDE::</h2>
+        <p>
+          Our first and foremost goal is to develop <span class="highlight">Excellent customer service</span>, 
+          which creates loyal customers for life who are willing to refer their business to friends, 
+          family, and colleagues.
+        </p>
+        <p>
+          Providing this type of excellent customer service starts with a genuine desire to delight our customers, 
+          but we also have to think beyond selling products or services. We always consider the cumulative 
+          experience of our customers, have when they visit our store or website, we just put in note their 
+          thinking and feeling, and invite all make it better. <strong>Let's Make a better Nation.</strong>
+        </p>
+      </div>
+    </section>
+
+    <!-- NEW IDEAS ON WEB -->
+    <section class="new-ideas">
+      <h2>NEW IDEAS ON WEB</h2>
+      <p>
+        Idea Inside India is an IT Company, Providing professional web services like Responsive Web Designing, 
+        Website Development, WordPress Development, Shopping Cart Website/On Line Stores with Payment Gateway 
+        Integration, Web hosting with Domain registrations, Logo designing, Digital Marketing, Bulk SMS integration, 
+        Bulk Emails and Social media Marketing.
+      </p>
+      <div class="badge-list">
+        <span>⚡ Light Speed Cloud Server</span>
+        <span>🔍 SEO & SEM</span>
+        <span>💬 Real Time Chat Support</span>
+        <span>⏱ 99.09% Uptime</span>
+        <span>🌐 Free* Domain Registration</span>
+      </div>
+    </section>
+
+    <!-- GET STARTED / 3 COLUMN -->
+    <section class="section" style="padding-top: 0;">
+      <div class="section-header">
+        <h2>Get Started</h2>
+      </div>
+      <div class="three-col">
+        <div class="feature-card">
+          <img src="https://iitprivatelimited.com/wp-content/uploads/2016/10/domain.png" alt="Domains and hosting">
+          <h3>Domains & Hosting Services</h3>
+          <p>
+            Add a domain to carve out your own space on the web. We have valuable partners like GoDaddy, 
+            Namecheap, BigRock and use AWS Cloud, Mediafire and our own servers.
+          </p>
+        </div>
+        <div class="feature-card">
+          <img src="https://iitprivatelimited.com/wp-content/uploads/2016/10/seo.png" alt="SEO services">
+          <h3>Search Engine Optimizer Services</h3>
+          <p>
+            Make it easy for new fans to find you with built-in SEO. All you have to do is publish. 
+            We have dynamic professionals helping you rank higher.
+          </p>
+        </div>
+        <div class="feature-card">
+          <img src="https://iitprivatelimited.com/wp-content/uploads/2016/10/analytics.png" alt="Custom app development">
+          <h3>Custom App Development Services</h3>
+          <p>
+            Design and develop your own customized apps and ERP modules to maintain your business 
+            and liabilities, rather than using pre-built applications.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA: WE REALIZE YOUR VISION -->
+    <section class="cta-banner">
+      <h2>We Realize Your Vision</h2>
+      <p>Let’s build something remarkable together. Reach out for a free consultation.</p>
+      <a href="#" class="btn" style="background: #ffffff; color: #0d1f1c;">Contact Us →</a>
+    </section>
+  </div> <!-- /container -->
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <a href="#"><i class="fas fa-home" style="margin-right: 8px;"></i> Get Home</a>
+          <a href="#"><i class="fas fa-cogs" style="margin-right: 8px;"></i> Our Services</a>
+          <a href="#"><i class="fas fa-box" style="margin-right: 8px;"></i> All Products</a>
+          <a href="#"><i class="fas fa-users" style="margin-right: 8px;"></i> Clients Area</a>
+          <a href="#"><i class="fas fa-info-circle" style="margin-right: 8px;"></i> Info Cabin</a>
+          <a href="#"><i class="fas fa-headset" style="margin-right: 8px;"></i> Support Desk</a>
+        </div>
+        <div class="footer-col">
+          <h3>About Us</h3>
+          <p>
+            We love our work, yes that's the simplest way to describe why we have been thriving and 
+            serving our global clientele with satisfaction in our services. We Believe in togetherness 
+            and its our continuous effort to make the things better.
+          </p>
+          <a href="#" style="color: #97db8e; font-weight: 600;">Know More →</a>
+          <p style="margin-top: 1.5rem;"><a href="#" style="color: #97db8e;">Donate Us</a></p>
+        </div>
+        <div class="footer-col">
+          <h3>We Ensure</h3>
+          <img src="https://iitprivatelimited.com/wp-content/uploads/2016/10/satisfaction_guarantee.png" alt="satisfaction guarantee" style="width: 140px; margin: 1rem 0;">
+          <p><a href="#" style="color: #97db8e;">or, Get 100% Cash Back.</a></p>
+          <h3 style="margin-top: 2rem;">Follow Us</h3>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        © Idea Inside India 2007-2021. All Rights Reserved. | Powered by WordPress, Theme i-max by TemplatesNext.
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp floating button (decorative, as in original) -->
+  <div style="position: fixed; bottom: 25px; right: 25px; z-index: 999;">
+    <a href="#" style="background: #25D366; width: 55px; height: 55px; display: flex; align-items: center; justify-content: center; border-radius: 50%; box-shadow: 0 6px 16px rgba(0,0,0,0.2); color: white; font-size: 1.8rem;">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+</body>
+</html>
