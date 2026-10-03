@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,7 +41,10 @@
       font-size: 1rem;
     }
 
-    h1, h2, h3, h4 {
+    h1,
+    h2,
+    h3,
+    h4 {
       font-family: var(--font-heading);
       font-weight: 500;
       letter-spacing: -0.02em;
@@ -238,45 +242,202 @@
     }
 
     /* ============================================ */
-    /* 1. HERO SECTION                              */
+    /* 1. HERO CAROUSEL SLIDESHOW                   */
     /* ============================================ */
-    .hero-slider {
-      background: linear-gradient(135deg, #212e4e 0%, #cc9c0a 100%);
+    .hero-carousel {
+      position: relative;
       border-radius: 0 0 40px 40px;
       overflow: hidden;
       margin-bottom: 4rem;
+      box-shadow: 0 20px 40px -15px rgba(33, 46, 78, 0.25);
     }
 
-    .slide-content {
+    .carousel-track-container {
+      position: relative;
+      width: 100%;
+      height: 560px;
+      overflow: hidden;
+    }
+
+    .carousel-track {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 6rem 4rem;
-      min-height: 520px;
+      height: 100%;
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      height: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
       background-size: cover;
       background-position: center;
-      background-blend-mode: overlay;
-      background-color: rgba(33, 46, 78, 0.85);
-      color: white;
+      background-repeat: no-repeat;
     }
 
-    .slide-content h2 {
-      font-size: 3.5rem;
+    /* Dark overlay over each slide's image for text readability */
+    .carousel-slide::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(33, 46, 78, 0.85) 0%, rgba(33, 46, 78, 0.55) 60%, rgba(204, 156, 10, 0.35) 100%);
+      z-index: 1;
+    }
+
+    .carousel-slide-content {
+      position: relative;
+      z-index: 2;
+      padding: 4rem 5rem;
+      color: white;
+      max-width: 780px;
+    }
+
+    .carousel-slide-content h2 {
+      font-size: 3.4rem;
       font-weight: 600;
       color: white;
-      max-width: 700px;
       margin-bottom: 1rem;
+      line-height: 1.15;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.7s ease 0.3s;
     }
 
-    .slide-content p {
-      font-size: 1.3rem;
+    .carousel-slide-content p {
+      font-size: 1.25rem;
       color: #e2f0eb;
-      max-width: 600px;
       margin-bottom: 2rem;
+      max-width: 560px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.7s ease 0.5s;
     }
 
-    .slide-content .btn {
-      align-self: flex-start;
+    .carousel-slide-content .btn {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.7s ease 0.7s;
+    }
+
+    /* Animate content in when slide becomes active */
+    .carousel-slide.active .carousel-slide-content h2,
+    .carousel-slide.active .carousel-slide-content p,
+    .carousel-slide.active .carousel-slide-content .btn {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---- Navigation Arrows ---- */
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      color: white;
+      font-size: 1.15rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .carousel-btn:hover {
+      background: var(--brand-gold);
+      border-color: var(--brand-gold);
+      color: var(--brand-blue);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .carousel-btn.prev {
+      left: 24px;
+    }
+
+    .carousel-btn.next {
+      right: 24px;
+    }
+
+    /* ---- Dot Indicators ---- */
+    .carousel-dots {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    .carousel-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      padding: 0;
+    }
+
+    .carousel-dot:hover {
+      background: rgba(255, 255, 255, 0.7);
+      transform: scale(1.2);
+    }
+
+    .carousel-dot.active {
+      background: var(--brand-gold);
+      width: 34px;
+      border-radius: 20px;
+      border-color: var(--brand-gold);
+    }
+
+    /* ---- Progress Bar ---- */
+    .carousel-progress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 4px;
+      background: var(--brand-gold);
+      width: 0;
+      z-index: 10;
+      transition: width 0.3s linear;
+    }
+
+    /* Pause button */
+    .carousel-pause {
+      position: absolute;
+      bottom: 24px;
+      right: 28px;
+      z-index: 10;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      color: white;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .carousel-pause:hover {
+      background: var(--brand-gold);
+      border-color: var(--brand-gold);
+      color: var(--brand-blue);
     }
 
     /* ============================================ */
@@ -294,7 +455,6 @@
       align-items: center;
     }
 
-    /* --- UPDATED: about-image-box now centers a CTA button --- */
     .about-image-box {
       position: relative;
       border-radius: var(--radius-lg);
@@ -311,7 +471,6 @@
       overflow: hidden;
     }
 
-    /* Dark overlay so the CTA button stands out over the image */
     .about-image-box::before {
       content: '';
       position: absolute;
@@ -324,7 +483,6 @@
       background: rgba(33, 46, 78, 0.7);
     }
 
-    /* The CTA button placed in the middle of the image box */
     .about-image-box .image-cta {
       position: relative;
       z-index: 2;
@@ -354,7 +512,7 @@
       color: var(--brand-blue);
     }
 
-    .about-text > p {
+    .about-text>p {
       font-size: 1.1rem;
       color: var(--text-muted);
       margin-bottom: 2rem;
@@ -644,7 +802,7 @@
       text-align: justify;
     }
 
-    /* ---------- CTA BANNER ---------- */
+    /* ---------- CTA BANNER (now standalone) ---------- */
     .cta-banner {
       background: linear-gradient(135deg, #212e4e, #cc9c0a);
       border-radius: var(--radius-lg);
@@ -732,7 +890,7 @@
     }
 
     .footer-social a:hover {
-      background: #cc9c0a;;
+      background: #cc9c0a;
       color: var(--brand-blue);
     }
 
@@ -747,23 +905,35 @@
 
     /* ---------- RESPONSIVE ---------- */
     @media (max-width: 1024px) {
-      .slide-content h2 {
+      .carousel-slide-content h2 {
         font-size: 2.6rem;
       }
+
+      .carousel-track-container {
+        height: 500px;
+      }
+
+      .carousel-slide-content {
+        padding: 3rem 4rem;
+      }
+
       .split-section {
         grid-template-columns: 1fr;
       }
     }
 
     @media (max-width: 900px) {
+
       .about-grid,
       .achievements-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
       }
+
       .mission-vision-cols {
         grid-template-columns: 1fr;
       }
+
       .three-col {
         grid-template-columns: 1fr 1fr;
       }
@@ -774,34 +944,65 @@
         flex-direction: column;
         align-items: stretch;
       }
+
       .nav-links {
         justify-content: center;
         gap: 1.2rem;
       }
+
       .search-form {
         width: 100%;
       }
+
       .search-form input {
         width: 100%;
       }
-      .slide-content {
-        padding: 4rem 2rem;
+
+      .carousel-track-container {
+        height: 480px;
       }
-      .slide-content h2 {
+
+      .carousel-slide-content {
+        padding: 3rem 2rem;
+      }
+
+      .carousel-slide-content h2 {
         font-size: 2rem;
       }
-      .slide-content p {
-        font-size: 1.1rem;
+
+      .carousel-slide-content p {
+        font-size: 1.05rem;
       }
+
+      .carousel-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 1rem;
+      }
+
+      .carousel-btn.prev {
+        left: 12px;
+      }
+
+      .carousel-btn.next {
+        right: 12px;
+      }
+
       .three-col {
         grid-template-columns: 1fr;
       }
+
       .top-bar .container {
         flex-direction: column;
         align-items: center;
       }
+
       .contact-info {
         justify-content: center;
+      }
+
+      .cta-banner h2 {
+        font-size: 2rem;
       }
     }
 
@@ -809,18 +1010,45 @@
       .container {
         padding: 0 1.2rem;
       }
+
       .section {
         padding: 3rem 0;
       }
+
       .section-header h2 {
         font-size: 2rem;
       }
+
       .about-image-box {
         height: 250px;
+      }
+
+      .carousel-track-container {
+        height: 420px;
+      }
+
+      .carousel-slide-content h2 {
+        font-size: 1.6rem;
+      }
+
+      .carousel-slide-content p {
+        font-size: 0.95rem;
+      }
+
+      .carousel-dots {
+        bottom: 18px;
+      }
+
+      .carousel-pause {
+        width: 34px;
+        height: 34px;
+        bottom: 14px;
+        right: 18px;
       }
     }
   </style>
 </head>
+
 <body>
   <!-- ========== TOP BAR ========== -->
   <div class="top-bar">
@@ -863,14 +1091,82 @@
   </header>
 
   <!-- ============================================ -->
-  <!-- 1. HERO SECTION                              -->
+  <!-- 1. HERO CAROUSEL SLIDESHOW                   -->
   <!-- ============================================ -->
-  <section class="hero-slider">
-    <div class="slide-content" style="background-image: url('https://iitprivatelimited.com/wp-content/themes/i-max/images/slide1.jpg');">
-      <h2>You Want a Website</h2>
-      <p>Complete Website Design and Development Solutions. We Are Expanding our Services in making of Digitalised India Since 2007.</p>
-      <a href="#" class="btn">Get In for a New Idea →</a>
+  <section class="hero-carousel" id="heroCarousel">
+    <div class="carousel-track-container">
+      <div class="carousel-track" id="carouselTrack">
+
+        <!-- Slide 1 -->
+        <div class="carousel-slide active"
+          style="background-image: url('https://iitprivatelimited.com/wp-content/themes/i-max/images/slide1.jpg');">
+          <div class="carousel-slide-content">
+            <h2>You Want a Website</h2>
+            <p>Complete Website Design and Development Solutions. We Are Expanding our Services in making of Digitalised
+              India Since 2007.</p>
+            <a href="#" class="btn">Get In for a New Idea →</a>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-slide"
+          style="background-image: url('https://iitprivatelimited.com/wp-content/themes/i-max/images/slide2.jpg');">
+          <div class="carousel-slide-content">
+            <h2>Easy to Use Apps</h2>
+            <p>"Curiosity is the father of all inventions". We build Android, iOS, and cross‑platform apps built for
+              performance and scale.</p>
+            <a href="#" class="btn">Know More →</a>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="carousel-slide"
+          style="background-image: url('https://iitprivatelimited.com/wp-content/themes/i-max/images/slide3.jpg');">
+          <div class="carousel-slide-content">
+            <h2>Needs SEO &amp; SEM Assistances</h2>
+            <p>We provide Digital Assistance services to our clients understanding their need for various business and
+              management related work.</p>
+            <a href="#" class="btn">Get a Perfect Tech Partner →</a>
+          </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="carousel-slide"
+          style="background-image: url('https://iitprivatelimited.com/wp-content/themes/i-max/images/slide4.jpg');">
+          <div class="carousel-slide-content">
+            <h2>Domain &amp; Hosting</h2>
+            <p>Domain Name Registration and Hosting Solutions with 99.03% Uptime user Experience. Free* domain
+              registration available.</p>
+            <a href="#" class="btn">Know More →</a>
+          </div>
+        </div>
+
+      </div>
     </div>
+
+    <!-- Navigation Arrows -->
+    <button class="carousel-btn prev" id="prevBtn" aria-label="Previous slide">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="carousel-btn next" id="nextBtn" aria-label="Next slide">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+
+    <!-- Dot Indicators -->
+    <div class="carousel-dots" id="carouselDots">
+      <button class="carousel-dot active" data-slide="0" aria-label="Go to slide 1"></button>
+      <button class="carousel-dot" data-slide="1" aria-label="Go to slide 2"></button>
+      <button class="carousel-dot" data-slide="2" aria-label="Go to slide 3"></button>
+      <button class="carousel-dot" data-slide="3" aria-label="Go to slide 4"></button>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="carousel-progress" id="carouselProgress"></div>
+
+    <!-- Pause/Play Button -->
+    <button class="carousel-pause" id="pauseBtn" aria-label="Pause slideshow">
+      <i class="fas fa-pause"></i>
+    </button>
   </section>
 
   <div class="container">
@@ -900,7 +1196,8 @@
           <div class="mission-vision-cols">
             <div class="mv-item">
               <h3><i class="fas fa-bullseye" style="color: var(--brand-gold); margin-right: 8px;"></i> Our Mission</h3>
-              <p>To provide high quality Digital Assistance Services, from education & automation to GST accounting and AI projects.</p>
+              <p>To provide high quality Digital Assistance Services, from education & automation to GST accounting and
+                AI projects.</p>
             </div>
             <div class="mv-item">
               <h3><i class="fas fa-eye" style="color: var(--brand-gold); margin-right: 8px;"></i> Our Vision</h3>
@@ -922,7 +1219,8 @@
 
       <div class="services-grid">
         <div class="service-card">
-          <img src="https://iitprivatelimited.com/wp-content/uploads/2016/10/software-development.png" alt="Software Development">
+          <img src="https://iitprivatelimited.com/wp-content/uploads/2016/10/software-development.png"
+            alt="Software Development">
           <i class="fas fa-code"></i>
           <h3>Software Development</h3>
           <p>Custom software, ERP modules, and automation solutions tailored to your business.</p>
@@ -948,62 +1246,11 @@
       </div>
     </section>
 
-    <!-- ============================================ -->
-    <!-- 4. ACHIEVEMENTS & CLIENTS SECTION            -->
-    <!-- ============================================ -->
-    <section class="achievements-section">
-      <div class="container">
-        <div class="achievements-grid">
-
-          <!-- Left: Achievements List -->
-          <div>
-            <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--brand-blue);">Our Achievements</h2>
-            <ul class="achievements-list">
-              <li>
-                <i class="fas fa-trophy"></i>
-                <div>
-                  <strong>15+ Years of Excellence</strong>
-                  <span>Serving global clientele since 2007.</span>
-                </div>
-              </li>
-              <li>
-                <i class="fas fa-users"></i>
-                <div>
-                  <strong>500+ Happy Clients</strong>
-                  <span>Businesses, students, and organizations.</span>
-                </div>
-              </li>
-              <li>
-                <i class="fas fa-project-diagram"></i>
-                <div>
-                  <strong>1000+ Projects Delivered</strong>
-                  <span>From web apps to complex ERP systems.</span>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Right: Clients Showcase -->
-          <div>
-            <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--brand-blue);">Clients</h2>
-            <div class="clients-showcase">
-              <div class="client-logo">Client A</div>
-              <div class="client-logo">Client B</div>
-              <div class="client-logo">Client C</div>
-              <div class="client-logo">Client D</div>
-              <div class="client-logo">Client E</div>
-              <div class="client-logo">Client F</div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
     <!-- ---------- SPLIT: IMAGE + SERVICES OATH ---------- -->
     <section class="split-section">
       <div class="split-image">
-        <img src="https://iitprivatelimited.com/wp-content/uploads/2016/10/gateway-bank-rwd2.jpg" alt="Gateway bank responsive design">
+        <img src="https://iitprivatelimited.com/wp-content/uploads/2016/10/gateway-bank-rwd2.jpg"
+          alt="Gateway bank responsive design">
       </div>
       <div class="split-text">
         <h2>::SERVICES OATH OF IDEA INSIDE::</h2>
@@ -1062,7 +1309,8 @@
           </p>
         </div>
         <div class="feature-card">
-          <img src="https://iitprivatelimited.com/wp-content/uploads/2016/10/analytics.png" alt="Custom app development">
+          <img src="https://iitprivatelimited.com/wp-content/uploads/2016/10/analytics.png"
+            alt="Custom app development">
           <h3>Custom App Development Services</h3>
           <p>
             Design and develop your own customized apps and ERP modules to maintain your business
@@ -1072,7 +1320,61 @@
       </div>
     </section>
 
-    <!-- ---------- CTA: WE REALIZE YOUR VISION ---------- -->
+    <!-- ============================================ -->
+    <!-- 4. ACHIEVEMENTS & CLIENTS SECTION            -->
+    <!-- ============================================ -->
+    <section class="achievements-section">
+      <div class="container">
+        <div class="achievements-grid">
+
+          <!-- Left: Achievements List -->
+          <div>
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--brand-blue);">Our Achievements</h2>
+            <ul class="achievements-list">
+              <li>
+                <i class="fas fa-trophy"></i>
+                <div>
+                  <strong>15+ Years of Excellence</strong>
+                  <span>Serving global clientele since 2007.</span>
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-users"></i>
+                <div>
+                  <strong>500+ Happy Clients</strong>
+                  <span>Businesses, students, and organizations.</span>
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-project-diagram"></i>
+                <div>
+                  <strong>1000+ Projects Delivered</strong>
+                  <span>From web apps to complex ERP systems.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Right: Clients Showcase -->
+          <div>
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--brand-blue);">Clients</h2>
+            <div class="clients-showcase">
+              <div class="client-logo">Client A</div>
+              <div class="client-logo">Client B</div>
+              <div class="client-logo">Client C</div>
+              <div class="client-logo">Client D</div>
+              <div class="client-logo">Client E</div>
+              <div class="client-logo">Client F</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- CTA BANNER (Standalone, separate section)    -->
+    <!-- ============================================ -->
     <section class="cta-banner">
       <h2>We Realize Your Vision</h2>
       <p>Let's build something remarkable together. Reach out for a free consultation.</p>
@@ -1089,7 +1391,8 @@
       <div style="text-align: center; margin-bottom: 3rem;">
         <h2 style="color: #ffffff; font-size: 2.5rem; margin-bottom: 1rem;">Our Clients</h2>
         <p style="color: #cbd5e1; max-width: 600px; margin: 0 auto 2rem;">
-          Join the hundreds of businesses and institutions that trust Idea Inside India for their digital transformation.
+          Join the hundreds of businesses and institutions that trust Idea Inside India for their digital
+          transformation.
         </p>
         <a href="#" class="btn-outline" style="display: inline-block; padding: .5rem;">Contact Us Today</a>
       </div>
@@ -1097,12 +1400,24 @@
       <div class="footer-grid">
         <div class="footer-col">
           <h3>Quick Links</h3>
-          <a href="#"><i class="fas fa-home" style="margin-right: 8px; border: 1px solid #ffffff;border-radius: 50%; padding: .5rem; background-color: #fff; color: #cc9c0a;"></i> Get Home</a>
-          <a href="#"><i class="fas fa-cogs" style="margin-right: 8px; border: 1px solid #ffffff;border-radius: 50%; padding: .5rem; background-color: #fff; color: #cc9c0a;"></i> Our Services</a>
-          <a href="#"><i class="fas fa-box" style="margin-right: 8px; border: 1px solid #ffffff;border-radius: 50%; padding: .5rem; background-color: #fff; color: #cc9c0a;"></i> All Products</a>
-          <a href="#"><i class="fas fa-users" style="margin-right: 8px; border: 1px solid #ffffff;border-radius: 50%; padding: .5rem; background-color: #fff; color: #cc9c0a;"></i> Clients Area</a>
-          <a href="#"><i class="fas fa-info-circle" style="margin-right: 8px; border: 1px solid #ffffff;border-radius: 50%; padding: .5rem; background-color: #fff; color: #cc9c0a;"></i> Info Cabin</a>
-          <a href="#"><i class="fas fa-headset" style="margin-right: 8px; border: 1px solid #ffffff;border-radius: 50%; padding: .5rem; background-color: #fff; color: #cc9c0a;"></i> Support Desk</a>
+          <a href="#"><i class="fas fa-home"
+              style="margin-right: 8px; border: 1px solid #ffffff;border-radius: 50%; padding: .5rem; background-color: #fff; color: #cc9c0a;"></i>
+            Get Home</a>
+          <a href="#"><i class="fas fa-cogs"
+              style="margin-right: 8px; border: 1px solid #ffffff;border-radius: 50%; padding: .5rem; background-color: #fff; color: #cc9c0a;"></i>
+            Our Services</a>
+          <a href="#"><i class="fas fa-box"
+              style="margin-right: 8px; border: 1px solid #ffffff;border-radius: 50%; padding: .5rem; background-color: #fff; color: #cc9c0a;"></i>
+            All Products</a>
+          <a href="#"><i class="fas fa-users"
+              style="margin-right: 8px; border: 1px solid #ffffff;border-radius: 50%; padding: .5rem; background-color: #fff; color: #cc9c0a;"></i>
+            Clients Area</a>
+          <a href="#"><i class="fas fa-info-circle"
+              style="margin-right: 8px; border: 1px solid #ffffff;border-radius: 50%; padding: .5rem; background-color: #fff; color: #cc9c0a;"></i>
+            Info Cabin</a>
+          <a href="#"><i class="fas fa-headset"
+              style="margin-right: 8px; border: 1px solid #ffffff;border-radius: 50%; padding: .5rem; background-color: #fff; color: #cc9c0a;"></i>
+            Support Desk</a>
         </div>
         <div class="footer-col">
           <h3>About Us</h3>
@@ -1116,7 +1431,8 @@
         </div>
         <div class="footer-col">
           <h3 style="margin-left: 20%;">We Ensure</h3>
-          <img src="https://iitprivatelimited.com/wp-content/uploads/2016/10/satisfaction_guarantee.png" alt="satisfaction guarantee" style="width: 250px; margin: 1rem 0;">
+          <img src="https://iitprivatelimited.com/wp-content/uploads/2016/10/satisfaction_guarantee.png"
+            alt="satisfaction guarantee" style="width: 250px; margin: 1rem 0;">
           <p style="margin-left: 15%;"><a href="#" style="color: #cc9c0a">or, Get 100% Cash Back.</a></p>
           <h3 style="margin-top: 2rem; margin-left: 25%;">Follow Us</h3>
           <div class="footer-social">
@@ -1136,9 +1452,200 @@
 
   <!-- WhatsApp floating button (decorative, as in original) -->
   <div style="position: fixed; bottom: 25px; right: 25px; z-index: 999;">
-    <a href="#" style="background: #25D366; width: 55px; height: 55px; display: flex; align-items: center; justify-content: center; border-radius: 50%; box-shadow: 0 6px 16px rgba(0,0,0,0.2); color: white; font-size: 1.8rem;">
+    <a href="#"
+      style="background: #25D366; width: 55px; height: 55px; display: flex; align-items: center; justify-content: center; border-radius: 50%; box-shadow: 0 6px 16px rgba(0,0,0,0.2); color: white; font-size: 1.8rem;">
       <i class="fab fa-whatsapp"></i>
     </a>
   </div>
+
+  <!-- ============================================ -->
+  <!-- CAROUSEL JAVASCRIPT                          -->
+  <!-- ============================================ -->
+  <script>
+    (function () {
+      'use strict';
+
+      const track = document.getElementById('carouselTrack');
+      const slides = Array.from(track.children);
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const dotsContainer = document.getElementById('carouselDots');
+      const dots = Array.from(dotsContainer.children);
+      const progressBar = document.getElementById('carouselProgress');
+      const pauseBtn = document.getElementById('pauseBtn');
+      const carousel = document.getElementById('heroCarousel');
+
+      const SLIDE_DURATION = 6000; // 6 seconds per slide
+      let currentIndex = 0;
+      let autoPlayTimer = null;
+      let progressTimer = null;
+      let progressStart = null;
+      let isPlaying = true;
+      let isHovering = false;
+
+      /* ---------- FUNCTIONS ---------- */
+      function goToSlide(index) {
+        // Handle wrap-around
+        if (index < 0) index = slides.length - 1;
+        if (index >= slides.length) index = 0;
+
+        // Update track position
+        track.style.transform = `translateX(-${index * 100}%)`;
+
+        // Update active classes
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('active', i === index);
+        });
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === index);
+        });
+
+        currentIndex = index;
+      }
+
+      function nextSlide() {
+        goToSlide(currentIndex + 1);
+      }
+
+      function prevSlide() {
+        goToSlide(currentIndex - 1);
+      }
+
+      /* ---------- AUTO-PLAY ---------- */
+      function startAutoPlay() {
+        if (autoPlayTimer) clearInterval(autoPlayTimer);
+        if (progressTimer) cancelAnimationFrame(progressTimer);
+
+        // Reset progress bar
+        progressBar.style.transition = 'none';
+        progressBar.style.width = '0%';
+
+        // Force reflow
+        void progressBar.offsetWidth;
+
+        // Animate progress bar
+        progressBar.style.transition = `width ${SLIDE_DURATION}ms linear`;
+        progressBar.style.width = '100%';
+
+        // Advance slides on interval
+        autoPlayTimer = setInterval(() => {
+          if (!isHovering) {
+            nextSlide();
+            // Restart progress bar
+            progressBar.style.transition = 'none';
+            progressBar.style.width = '0%';
+            void progressBar.offsetWidth;
+            progressBar.style.transition = `width ${SLIDE_DURATION}ms linear`;
+            progressBar.style.width = '100%';
+          }
+        }, SLIDE_DURATION);
+      }
+
+      function stopAutoPlay() {
+        if (autoPlayTimer) clearInterval(autoPlayTimer);
+        autoPlayTimer = null;
+        progressBar.style.transition = 'none';
+        progressBar.style.width = '0%';
+      }
+
+      function resetAutoPlay() {
+        stopAutoPlay();
+        if (isPlaying) {
+          startAutoPlay();
+        }
+      }
+
+      /* ---------- EVENT LISTENERS ---------- */
+      // Arrows
+      nextBtn.addEventListener('click', () => {
+        nextSlide();
+        resetAutoPlay();
+      });
+
+      prevBtn.addEventListener('click', () => {
+        prevSlide();
+        resetAutoPlay();
+      });
+
+      // Dots
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+          goToSlide(i);
+          resetAutoPlay();
+        });
+      });
+
+      // Pause/Play button
+      pauseBtn.addEventListener('click', () => {
+        isPlaying = !isPlaying;
+        if (isPlaying) {
+          pauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+          pauseBtn.setAttribute('aria-label', 'Pause slideshow');
+          startAutoPlay();
+        } else {
+          pauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+          pauseBtn.setAttribute('aria-label', 'Play slideshow');
+          stopAutoPlay();
+        }
+      });
+
+      // Pause on hover (desktop)
+      carousel.addEventListener('mouseenter', () => {
+        isHovering = true;
+      });
+      carousel.addEventListener('mouseleave', () => {
+        isHovering = false;
+      });
+
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') {
+          nextSlide();
+          resetAutoPlay();
+        } else if (e.key === 'ArrowLeft') {
+          prevSlide();
+          resetAutoPlay();
+        }
+      });
+
+      // Touch swipe support
+      let touchStartX = 0;
+      let touchEndX = 0;
+      const SWIPE_THRESHOLD = 50;
+
+      carousel.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      carousel.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > SWIPE_THRESHOLD) {
+          if (diff > 0) {
+            nextSlide();
+          } else {
+            prevSlide();
+          }
+          resetAutoPlay();
+        }
+      }, { passive: true });
+
+      // Pause autoplay when tab is hidden (saves resources)
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          stopAutoPlay();
+        } else if (isPlaying) {
+          startAutoPlay();
+        }
+      });
+
+      /* ---------- INITIALIZE ---------- */
+      goToSlide(0);
+      if (isPlaying) {
+        startAutoPlay();
+      }
+    })();
+  </script>
 </body>
+
 </html>
