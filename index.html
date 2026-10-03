@@ -15,12 +15,13 @@
     }
 
     :root {
-      --brand-green: #97db8e;
+      --brand-blue: #212e4e;
+      --brand-gold: #cc9c0a;
+      --brand-gold-hover: #b88a12;
       --brand-dark: #1e1e1e;
-      --brand-gray: #2e2e2e;
-      --soft-bg: #f8faf8;
-      --text-dark: #1f2e2b;
-      --text-muted: #4a5e57;
+      --soft-bg: #f8f9fb;
+      --text-dark: #1f202e;
+      --text-muted: #4a4c5e;
       --card-bg: #ffffff;
       --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.04), 0 4px 8px rgba(0, 0, 0, 0.02);
       --shadow-hover: 0 20px 30px -10px rgba(0, 0, 0, 0.12), 0 8px 18px rgba(0, 0, 0, 0.06);
@@ -78,7 +79,7 @@
     .section-header h2 {
       font-size: 2.5rem;
       font-weight: 600;
-      color: #0c1e1a;
+      color: var(--brand-blue);
       margin-bottom: 0.75rem;
     }
 
@@ -91,12 +92,12 @@
 
     .btn {
       display: inline-block;
-      background-color: var(--brand-green);
-      color: #0c1e1a;
-      font-weight: 600;
+      background-color: var(--brand-gold);
+      color: var(--brand-blue);
+      font-weight: 700;
       padding: 0.85rem 2.2rem;
       border-radius: 60px;
-      box-shadow: 0 8px 16px -6px rgba(151, 219, 142, 0.4);
+      box-shadow: 0 8px 16px -6px rgba(204, 156, 10, 0.4);
       transition: all 0.3s ease;
       border: 2px solid transparent;
       font-size: 1rem;
@@ -104,28 +105,27 @@
     }
 
     .btn:hover {
-      background-color: #7bc972;
+      background-color: var(--brand-gold-hover);
       transform: translateY(-3px);
-      box-shadow: 0 18px 25px -10px rgba(151, 219, 142, 0.5);
-      color: #0b1a16;
+      box-shadow: 0 18px 25px -10px rgba(204, 156, 10, 0.5);
     }
 
     .btn-outline {
       background: transparent;
-      border: 2px solid var(--brand-green);
-      color: #1e3a34;
+      border: 2px solid var(--brand-gold);
+      color: var(--brand-gold);
       box-shadow: none;
     }
 
     .btn-outline:hover {
-      background: var(--brand-green);
-      color: #0c1e1a;
+      background: var(--brand-gold);
+      color: var(--brand-blue);
       transform: translateY(-2px);
     }
 
     /* ---------- HEADER / NAVIGATION ---------- */
     .top-bar {
-      background-color: #0d1f1c;
+      background-color: var(--brand-blue);
       color: #dbede6;
       padding: 0.6rem 0;
       font-size: 0.9rem;
@@ -146,12 +146,12 @@
     }
 
     .social-icons a {
-      color: #bcd9cf;
+      color: #ffffff;
       font-size: 1.1rem;
     }
 
     .social-icons a:hover {
-      color: var(--brand-green);
+      color: var(--brand-gold);
     }
 
     .contact-info {
@@ -162,7 +162,7 @@
 
     .contact-info span i {
       margin-right: 0.5rem;
-      color: var(--brand-green);
+      color: var(--brand-gold);
     }
 
     .navbar {
@@ -197,7 +197,7 @@
 
     .nav-links a {
       font-weight: 500;
-      color: #1e2f2b;
+      color: var(--brand-blue);
       font-size: 0.98rem;
       padding-bottom: 0.25rem;
       border-bottom: 2px solid transparent;
@@ -205,14 +205,14 @@
 
     .nav-links a:hover,
     .nav-links .active {
-      color: #0a7e6b;
-      border-bottom-color: var(--brand-green);
+      color: var(--brand-blue);
+      border-bottom-color: var(--brand-gold);
     }
 
     .search-form {
       display: flex;
       align-items: center;
-      background: #f0f5f2;
+      background: #f0f2f7;
       border-radius: 40px;
       padding: 0.3rem 0.3rem 0.3rem 1rem;
     }
@@ -227,34 +227,36 @@
     }
 
     .search-form button {
-      background: var(--brand-green);
+      background: var(--brand-gold);
       border: none;
       border-radius: 40px;
       padding: 0.4rem 1rem;
-      color: #0c1e1a;
+      color: var(--brand-blue);
       font-weight: 600;
       cursor: pointer;
       transition: background 0.2s;
     }
 
-    /* ---------- HERO SLIDER (STATIC BUT MODERN) ---------- */
+    /* ============================================ */
+    /* 1. HERO SECTION                              */
+    /* ============================================ */
     .hero-slider {
-      background: linear-gradient(135deg, #0e231f 0%, #1b3a33 100%);
+      background: linear-gradient(135deg, #212e4e 0%, #cc9c0a 100%);
       border-radius: 0 0 40px 40px;
       overflow: hidden;
-      margin-bottom: 1rem;
+      margin-bottom: 4rem;
     }
 
     .slide-content {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 5rem 4rem;
-      min-height: 480px;
+      padding: 6rem 4rem;
+      min-height: 520px;
       background-size: cover;
       background-position: center;
       background-blend-mode: overlay;
-      background-color: rgba(10, 25, 21, 0.65);
+      background-color: rgba(33, 46, 78, 0.85);
       color: white;
     }
 
@@ -275,12 +277,126 @@
 
     .slide-content .btn {
       align-self: flex-start;
-      background: var(--brand-green);
-      color: #0b1f1a;
-      font-weight: 700;
     }
 
-    /* ---------- SERVICE CARDS GRID ---------- */
+    /* ============================================ */
+    /* 2. ABOUT US SECTION (Split: Image + Text)    */
+    /* ============================================ */
+    .about-section {
+      padding: 4rem 0;
+      margin-bottom: 4rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    /* --- UPDATED: about-image-box now centers a CTA button --- */
+    .about-image-box {
+      position: relative;
+      border-radius: var(--radius-lg);
+      height: 420px;
+      width: 100%;
+      box-shadow: var(--shadow-sm);
+      background-image: url('https://iitprivatelimited.com/wp-content/uploads/2016/10/bba1.jpg');
+      background-size: cover;
+      background-position: center;
+      border: 4px solid var(--brand-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* Dark overlay so the CTA button stands out over the image */
+    .about-image-box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(33, 46, 78, 0.55);
+      transition: background 0.3s ease;
+    }
+
+    .about-image-box:hover::before {
+      background: rgba(33, 46, 78, 0.7);
+    }
+
+    /* The CTA button placed in the middle of the image box */
+    .about-image-box .image-cta {
+      position: relative;
+      z-index: 2;
+      background-color: #ffffff;
+      color: var(--brand-blue);
+      font-weight: 700;
+      padding: 1rem 2.4rem;
+      border-radius: 60px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+      font-size: 1.05rem;
+      letter-spacing: 0.4px;
+      transition: all 0.3s ease;
+      border: 2px solid #ffffff;
+    }
+
+    .about-image-box .image-cta:hover {
+      background-color: var(--brand-gold);
+      color: var(--brand-blue);
+      border-color: var(--brand-gold);
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .about-text h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--brand-blue);
+    }
+
+    .about-text > p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .mission-vision-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .mv-item {
+      background: var(--card-bg);
+      padding: 1.8rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      border-left: 4px solid var(--brand-gold);
+      border-top: 1px solid #eef2f6;
+      border-right: 1px solid #eef2f6;
+      border-bottom: 1px solid #eef2f6;
+    }
+
+    .mv-item h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+      color: var(--brand-blue);
+    }
+
+    .mv-item p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 0;
+    }
+
+    /* ============================================ */
+    /* 3. OUR SERVICES SECTION                      */
+    /* ============================================ */
+    .services-section {
+      padding: 4rem 0;
+      margin-bottom: 4rem;
+    }
+
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -295,25 +411,33 @@
       text-align: center;
       box-shadow: var(--shadow-sm);
       transition: all 0.3s ease;
-      border: 1px solid #e5f0eb;
+      border: 1px solid #eef2f6;
     }
 
     .service-card:hover {
       transform: translateY(-8px);
       box-shadow: var(--shadow-hover);
-      border-color: var(--brand-green);
+      border-color: var(--brand-gold);
+    }
+
+    .service-card img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      margin: 0 auto 1rem;
     }
 
     .service-card i {
-      font-size: 2.6rem;
-      color: var(--brand-green);
-      margin-bottom: 1.2rem;
+      font-size: 2rem;
+      color: var(--brand-gold);
+      margin-bottom: 1rem;
     }
 
     .service-card h3 {
       font-size: 1.4rem;
       margin-bottom: 0.75rem;
       font-weight: 600;
+      color: var(--brand-blue);
     }
 
     .service-card p {
@@ -321,28 +445,86 @@
       font-size: 0.98rem;
     }
 
-    /* ---------- PARALLAX / CLIENTS INSIGHT ---------- */
-    .clients-insight {
-      background: #0d1f1c url('https://iitprivatelimited.com/wp-content/uploads/2016/10/bba1.jpg') center/cover no-repeat;
-      background-blend-mode: overlay;
+    /* ============================================ */
+    /* 4. ACHIEVEMENTS & CLIENTS SECTION            */
+    /* ============================================ */
+    .achievements-section {
+      padding: 4rem 0;
+      margin-bottom: 4rem;
+      background-color: #f4f6f9;
       border-radius: var(--radius-lg);
-      padding: 4rem 2rem;
-      text-align: center;
-      margin: 3rem 0;
-      color: white;
-      background-color: rgba(13, 31, 28, 0.85);
+      border: 1px solid #e0e7ef;
     }
 
-    .clients-insight h2 {
-      color: #d2f0e6;
-      font-size: 2.2rem;
-      font-style: italic;
-      margin-bottom: 1.8rem;
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
     }
 
-    .clients-insight .btn {
-      background: #ffffff;
-      color: #0d1f1c;
+    .achievements-list {
+      list-style: none;
+    }
+
+    .achievements-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      background: white;
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      border-left: 4px solid var(--brand-gold);
+    }
+
+    .achievements-list i {
+      color: var(--brand-blue);
+      font-size: 1.5rem;
+      margin-top: 0.2rem;
+    }
+
+    .achievements-list div strong {
+      display: block;
+      font-size: 1.1rem;
+      color: var(--brand-blue);
+    }
+
+    .achievements-list div span {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .clients-showcase {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .client-logo {
+      background: white;
+      padding: 1.5rem;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-sm);
+      width: 120px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #a0aec0;
+      font-size: 0.8rem;
+      transition: all 0.2s ease;
+      border: 1px solid #e2e8f0;
+    }
+
+    .client-logo:hover {
+      transform: scale(1.05);
+      color: var(--brand-gold);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--brand-gold);
     }
 
     /* ---------- SPLIT SECTION (SERVICES OATH) ---------- */
@@ -351,18 +533,21 @@
       grid-template-columns: 1fr 1fr;
       gap: 3rem;
       align-items: center;
+      padding: 4rem 0;
+      margin-bottom: 4rem;
     }
 
     .split-image img {
       border-radius: var(--radius-md);
       box-shadow: 0 25px 35px -10px rgba(0, 0, 0, 0.15);
-      border: 1px solid #d9eae2;
+      border: 1px solid var(--brand-gold);
+      width: 100%;
     }
 
     .split-text h2 {
       font-size: 2rem;
       margin-bottom: 1.5rem;
-      color: #0d3129;
+      color: var(--brand-blue);
     }
 
     .split-text p {
@@ -372,13 +557,13 @@
     }
 
     .split-text .highlight {
-      color: #0a7e6b;
+      color: var(--brand-blue);
       font-weight: 600;
     }
 
     /* ---------- NEW IDEAS ON WEB ---------- */
     .new-ideas {
-      background: #eef6f2;
+      background: #eef2f7;
       border-radius: var(--radius-lg);
       padding: 3.5rem 3rem;
       text-align: center;
@@ -387,7 +572,7 @@
 
     .new-ideas h2 {
       font-size: 2.3rem;
-      color: #0e2e27;
+      color: var(--brand-blue);
       margin-bottom: 1.2rem;
     }
 
@@ -395,7 +580,7 @@
       max-width: 900px;
       margin: 0 auto 1.8rem;
       font-size: 1.15rem;
-      color: #1f453c;
+      color: var(--brand-blue);
     }
 
     .new-ideas .badge-list {
@@ -412,8 +597,8 @@
       border-radius: 40px;
       font-weight: 500;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-      color: #0b2e26;
-      border: 1px solid #cbe5db;
+      color: var(--brand-blue);
+      border: 1px solid var(--brand-gold);
     }
 
     /* ---------- GET STARTED / 3 COLUMN ---------- */
@@ -430,13 +615,14 @@
       padding: 2.2rem 1.8rem;
       text-align: center;
       box-shadow: var(--shadow-sm);
-      border: 1px solid #e2f0ea;
+      border: 1px solid #eef2f6;
       transition: all 0.3s ease;
     }
 
     .feature-card:hover {
       box-shadow: var(--shadow-hover);
       transform: translateY(-6px);
+      border-color: var(--brand-gold);
     }
 
     .feature-card img {
@@ -449,6 +635,7 @@
     .feature-card h3 {
       font-size: 1.5rem;
       margin-bottom: 1rem;
+      color: var(--brand-blue);
     }
 
     .feature-card p {
@@ -459,7 +646,7 @@
 
     /* ---------- CTA BANNER ---------- */
     .cta-banner {
-      background: linear-gradient(135deg, #0d1f1c, #1f493f);
+      background: linear-gradient(135deg, #212e4e, #cc9c0a);
       border-radius: var(--radius-lg);
       padding: 4rem 2rem;
       text-align: center;
@@ -476,14 +663,21 @@
 
     .cta-banner p {
       font-size: 1.2rem;
-      color: #c3e3d8;
+      color: #ffffff;
       margin-bottom: 2rem;
     }
 
-    /* ---------- FOOTER ---------- */
+    .cta-banner .btn {
+      background: #ffffff;
+      color: var(--brand-blue);
+    }
+
+    /* ============================================ */
+    /* 5. OUR CLIENTS (Footer CTA)                  */
+    /* ============================================ */
     .site-footer {
-      background: #0f1f1b;
-      color: #b8d4ca;
+      background: var(--brand-blue);
+      color: #cc9c0a;
       padding: 4rem 0 2rem;
       border-radius: 40px 40px 0 0;
       margin-top: 4rem;
@@ -496,7 +690,7 @@
     }
 
     .footer-col h3 {
-      color: #d7f0e6;
+      color: #cc9c0a;
       font-size: 1.3rem;
       margin-bottom: 1.4rem;
     }
@@ -504,18 +698,18 @@
     .footer-col p {
       font-size: 0.95rem;
       margin-bottom: 1rem;
-      color: #aecbc1;
+      color: #cbd5e1;
     }
 
     .footer-col a {
-      color: #cce8df;
+      color: #cbd5e1;
       display: block;
       margin-bottom: 0.7rem;
       font-size: 0.95rem;
     }
 
     .footer-col a:hover {
-      color: var(--brand-green);
+      color: #cc9c0a;
     }
 
     .footer-social {
@@ -526,29 +720,29 @@
     }
 
     .footer-social a {
-      background: #1f3d35;
+      background: #fff;
       width: 38px;
       height: 38px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       border-radius: 50%;
-      color: #d4f0e5;
+      color: var(--brand-blue);
       font-size: 1.1rem;
     }
 
     .footer-social a:hover {
-      background: var(--brand-green);
-      color: #0d1f1c;
+      background: #cc9c0a;;
+      color: var(--brand-blue);
     }
 
     .copyright {
       text-align: center;
-      border-top: 1px solid #234139;
+      border-top: 1px solid #2a3f66;
       margin-top: 3rem;
       padding-top: 2rem;
       font-size: 0.9rem;
-      color: #9bb8ae;
+      color: #cbd5e1;
     }
 
     /* ---------- RESPONSIVE ---------- */
@@ -562,6 +756,14 @@
     }
 
     @media (max-width: 900px) {
+      .about-grid,
+      .achievements-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .mission-vision-cols {
+        grid-template-columns: 1fr;
+      }
       .three-col {
         grid-template-columns: 1fr 1fr;
       }
@@ -583,7 +785,7 @@
         width: 100%;
       }
       .slide-content {
-        padding: 3rem 2rem;
+        padding: 4rem 2rem;
       }
       .slide-content h2 {
         font-size: 2rem;
@@ -613,8 +815,8 @@
       .section-header h2 {
         font-size: 2rem;
       }
-      .clients-insight h2 {
-        font-size: 1.7rem;
+      .about-image-box {
+        height: 250px;
       }
     }
   </style>
@@ -641,7 +843,7 @@
   <header class="navbar">
     <div class="container">
       <a href="#" class="logo">
-        <img src="https://iitprivatelimited.com/wp-content/uploads/2016/10/logo-final.png" alt="Idea Inside India">
+        <img src="images/iit Logo empowering career - Copy.png" alt="Idea Inside India">
       </a>
       <nav>
         <ul class="nav-links">
@@ -660,51 +862,85 @@
     </div>
   </header>
 
-  <!-- ========== HERO ========== -->
+  <!-- ============================================ -->
+  <!-- 1. HERO SECTION                              -->
+  <!-- ============================================ -->
   <section class="hero-slider">
     <div class="slide-content" style="background-image: url('https://iitprivatelimited.com/wp-content/themes/i-max/images/slide1.jpg');">
       <h2>You Want a Website</h2>
-      <p>Complete Website Design and Development Solutions.</p>
+      <p>Complete Website Design and Development Solutions. We Are Expanding our Services in making of Digitalised India Since 2007.</p>
       <a href="#" class="btn">Get In for a New Idea →</a>
     </div>
   </section>
 
-  <!-- ========== MAIN CONTENT ========== -->
   <div class="container">
-    <!-- IDEA BEGINS -->
-    <section class="section" style="padding-bottom: 1rem;">
-      <div class="section-header">
-        <h1 style="font-size: 3rem; color: #0c1e1a; font-weight: 600; margin-bottom: 0.5rem;">IDEA BEGINS</h1>
-        <p style="font-size: 1.25rem; color: #2d4d43; max-width: 900px;">
-          We Are Expanding our Services in making of Digitalised India Since 2007. 
-          From very beginning of the journey, we focused on the actual need of our people 
-          and provide them user friendly application with all there requirements.
-        </p>
-        <p style="font-size: 1rem; font-style: italic; margin-top: 1.5rem; color: #547a6e;">
-          CEOsPen: "The whole binary system is the father of new tech era, the great Vedic invention".
-        </p>
+
+    <!-- ============================================ -->
+    <!-- 2. ABOUT US SECTION (Image + About/Mission)  -->
+    <!-- ============================================ -->
+    <section class="about-section">
+      <div class="about-grid">
+        <!-- Left: Image Box with centered "Click here →" CTA -->
+        <div class="about-image-box">
+          <a href="#" class="image-cta">Click here →</a>
+        </div>
+
+        <!-- Right: About Text & Mission/Vision -->
+        <div class="about-text">
+          <h2>About Us</h2>
+          <p>
+            We Are Expanding our Services in making of Digitalised India Since 2007.
+            From very beginning of the journey, we focused on the actual need of our people
+            and provide them user friendly application with all there requirements.
+          </p>
+          <p style="font-size: 1rem; font-style: italic; color: var(--brand-gold); margin-bottom: 2rem;">
+            CEOsPen: "The whole binary system is the father of new tech era, the great Vedic invention".
+          </p>
+
+          <div class="mission-vision-cols">
+            <div class="mv-item">
+              <h3><i class="fas fa-bullseye" style="color: var(--brand-gold); margin-right: 8px;"></i> Our Mission</h3>
+              <p>To provide high quality Digital Assistance Services, from education & automation to GST accounting and AI projects.</p>
+            </div>
+            <div class="mv-item">
+              <h3><i class="fas fa-eye" style="color: var(--brand-gold); margin-right: 8px;"></i> Our Vision</h3>
+              <p>To create an environment and awareness for intellectual and livelihood productivity across India.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- SERVICE CARDS (4) -->
-    <section class="section" style="padding-top: 0;">
+    <!-- ============================================ -->
+    <!-- 3. OUR SERVICES SECTION                      -->
+    <!-- ============================================ -->
+    <section class="services-section">
+      <div class="section-header">
+        <h2>Our Services</h2>
+        <p>Comprehensive digital solutions for your business growth.</p>
+      </div>
+
       <div class="services-grid">
         <div class="service-card">
+          <img src="https://iitprivatelimited.com/wp-content/uploads/2016/10/software-development.png" alt="Software Development">
           <i class="fas fa-code"></i>
           <h3>Software Development</h3>
           <p>Custom software, ERP modules, and automation solutions tailored to your business.</p>
         </div>
         <div class="service-card">
+          <img src="https://iitprivatelimited.com/wp-content/uploads/2016/10/design-technologies.png" alt="Web Design">
           <i class="fas fa-paint-brush"></i>
           <h3>Web Design & Development</h3>
           <p>Responsive websites, WordPress, e‑commerce, and engaging digital experiences.</p>
         </div>
         <div class="service-card">
+          <img src="https://iitprivatelimited.com/wp-content/uploads/2016/10/bulkTransfer.png" alt="SMS Services">
           <i class="fas fa-sms"></i>
           <h3>SMS Services</h3>
           <p>Bulk SMS, email marketing, and real‑time communication tools for your brand.</p>
         </div>
         <div class="service-card">
+          <img src="https://iitprivatelimited.com/wp-content/uploads/2016/10/app-developmen.png" alt="App Development">
           <i class="fas fa-mobile-alt"></i>
           <h3>Applications Development</h3>
           <p>Android, iOS, and cross‑platform apps built for performance and scale.</p>
@@ -712,40 +948,86 @@
       </div>
     </section>
 
-    <!-- CLIENTS INSIGHT / PARALLAX -->
-    <section class="clients-insight">
-      <h2>Clients Insight</h2>
-      <a href="#" class="btn">Click here →</a>
+    <!-- ============================================ -->
+    <!-- 4. ACHIEVEMENTS & CLIENTS SECTION            -->
+    <!-- ============================================ -->
+    <section class="achievements-section">
+      <div class="container">
+        <div class="achievements-grid">
+
+          <!-- Left: Achievements List -->
+          <div>
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--brand-blue);">Our Achievements</h2>
+            <ul class="achievements-list">
+              <li>
+                <i class="fas fa-trophy"></i>
+                <div>
+                  <strong>15+ Years of Excellence</strong>
+                  <span>Serving global clientele since 2007.</span>
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-users"></i>
+                <div>
+                  <strong>500+ Happy Clients</strong>
+                  <span>Businesses, students, and organizations.</span>
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-project-diagram"></i>
+                <div>
+                  <strong>1000+ Projects Delivered</strong>
+                  <span>From web apps to complex ERP systems.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Right: Clients Showcase -->
+          <div>
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--brand-blue);">Clients</h2>
+            <div class="clients-showcase">
+              <div class="client-logo">Client A</div>
+              <div class="client-logo">Client B</div>
+              <div class="client-logo">Client C</div>
+              <div class="client-logo">Client D</div>
+              <div class="client-logo">Client E</div>
+              <div class="client-logo">Client F</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </section>
 
-    <!-- SPLIT: IMAGE + SERVICES OATH -->
-    <section class="section split-section">
+    <!-- ---------- SPLIT: IMAGE + SERVICES OATH ---------- -->
+    <section class="split-section">
       <div class="split-image">
         <img src="https://iitprivatelimited.com/wp-content/uploads/2016/10/gateway-bank-rwd2.jpg" alt="Gateway bank responsive design">
       </div>
       <div class="split-text">
         <h2>::SERVICES OATH OF IDEA INSIDE::</h2>
         <p>
-          Our first and foremost goal is to develop <span class="highlight">Excellent customer service</span>, 
-          which creates loyal customers for life who are willing to refer their business to friends, 
+          Our first and foremost goal is to develop <span class="highlight">Excellent customer service</span>,
+          which creates loyal customers for life who are willing to refer their business to friends,
           family, and colleagues.
         </p>
         <p>
-          Providing this type of excellent customer service starts with a genuine desire to delight our customers, 
-          but we also have to think beyond selling products or services. We always consider the cumulative 
-          experience of our customers, have when they visit our store or website, we just put in note their 
+          Providing this type of excellent customer service starts with a genuine desire to delight our customers,
+          but we also have to think beyond selling products or services. We always consider the cumulative
+          experience of our customers, have when they visit our store or website, we just put in note their
           thinking and feeling, and invite all make it better. <strong>Let's Make a better Nation.</strong>
         </p>
       </div>
     </section>
 
-    <!-- NEW IDEAS ON WEB -->
+    <!-- ---------- NEW IDEAS ON WEB ---------- -->
     <section class="new-ideas">
       <h2>NEW IDEAS ON WEB</h2>
       <p>
-        Idea Inside India is an IT Company, Providing professional web services like Responsive Web Designing, 
-        Website Development, WordPress Development, Shopping Cart Website/On Line Stores with Payment Gateway 
-        Integration, Web hosting with Domain registrations, Logo designing, Digital Marketing, Bulk SMS integration, 
+        Idea Inside India is an IT Company, Providing professional web services like Responsive Web Designing,
+        Website Development, WordPress Development, Shopping Cart Website/On Line Stores with Payment Gateway
+        Integration, Web hosting with Domain registrations, Logo designing, Digital Marketing, Bulk SMS integration,
         Bulk Emails and Social media Marketing.
       </p>
       <div class="badge-list">
@@ -757,7 +1039,7 @@
       </div>
     </section>
 
-    <!-- GET STARTED / 3 COLUMN -->
+    <!-- ---------- GET STARTED / 3 COLUMN ---------- -->
     <section class="section" style="padding-top: 0;">
       <div class="section-header">
         <h2>Get Started</h2>
@@ -767,7 +1049,7 @@
           <img src="https://iitprivatelimited.com/wp-content/uploads/2016/10/domain.png" alt="Domains and hosting">
           <h3>Domains & Hosting Services</h3>
           <p>
-            Add a domain to carve out your own space on the web. We have valuable partners like GoDaddy, 
+            Add a domain to carve out your own space on the web. We have valuable partners like GoDaddy,
             Namecheap, BigRock and use AWS Cloud, Mediafire and our own servers.
           </p>
         </div>
@@ -775,7 +1057,7 @@
           <img src="https://iitprivatelimited.com/wp-content/uploads/2016/10/seo.png" alt="SEO services">
           <h3>Search Engine Optimizer Services</h3>
           <p>
-            Make it easy for new fans to find you with built-in SEO. All you have to do is publish. 
+            Make it easy for new fans to find you with built-in SEO. All you have to do is publish.
             We have dynamic professionals helping you rank higher.
           </p>
         </div>
@@ -783,49 +1065,60 @@
           <img src="https://iitprivatelimited.com/wp-content/uploads/2016/10/analytics.png" alt="Custom app development">
           <h3>Custom App Development Services</h3>
           <p>
-            Design and develop your own customized apps and ERP modules to maintain your business 
+            Design and develop your own customized apps and ERP modules to maintain your business
             and liabilities, rather than using pre-built applications.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- CTA: WE REALIZE YOUR VISION -->
+    <!-- ---------- CTA: WE REALIZE YOUR VISION ---------- -->
     <section class="cta-banner">
       <h2>We Realize Your Vision</h2>
-      <p>Let’s build something remarkable together. Reach out for a free consultation.</p>
-      <a href="#" class="btn" style="background: #ffffff; color: #0d1f1c;">Contact Us →</a>
+      <p>Let's build something remarkable together. Reach out for a free consultation.</p>
+      <a href="#" class="btn">Contact Us →</a>
     </section>
+
   </div> <!-- /container -->
 
-  <!-- ========== FOOTER ========== -->
+  <!-- ============================================ -->
+  <!-- 5. OUR CLIENTS (Footer CTA)                  -->
+  <!-- ============================================ -->
   <footer class="site-footer">
     <div class="container">
+      <div style="text-align: center; margin-bottom: 3rem;">
+        <h2 style="color: #ffffff; font-size: 2.5rem; margin-bottom: 1rem;">Our Clients</h2>
+        <p style="color: #cbd5e1; max-width: 600px; margin: 0 auto 2rem;">
+          Join the hundreds of businesses and institutions that trust Idea Inside India for their digital transformation.
+        </p>
+        <a href="#" class="btn-outline" style="display: inline-block; padding: .5rem;">Contact Us Today</a>
+      </div>
+
       <div class="footer-grid">
         <div class="footer-col">
           <h3>Quick Links</h3>
-          <a href="#"><i class="fas fa-home" style="margin-right: 8px;"></i> Get Home</a>
-          <a href="#"><i class="fas fa-cogs" style="margin-right: 8px;"></i> Our Services</a>
-          <a href="#"><i class="fas fa-box" style="margin-right: 8px;"></i> All Products</a>
-          <a href="#"><i class="fas fa-users" style="margin-right: 8px;"></i> Clients Area</a>
-          <a href="#"><i class="fas fa-info-circle" style="margin-right: 8px;"></i> Info Cabin</a>
-          <a href="#"><i class="fas fa-headset" style="margin-right: 8px;"></i> Support Desk</a>
+          <a href="#"><i class="fas fa-home" style="margin-right: 8px; border: 1px solid #ffffff;border-radius: 50%; padding: .5rem; background-color: #fff; color: #cc9c0a;"></i> Get Home</a>
+          <a href="#"><i class="fas fa-cogs" style="margin-right: 8px; border: 1px solid #ffffff;border-radius: 50%; padding: .5rem; background-color: #fff; color: #cc9c0a;"></i> Our Services</a>
+          <a href="#"><i class="fas fa-box" style="margin-right: 8px; border: 1px solid #ffffff;border-radius: 50%; padding: .5rem; background-color: #fff; color: #cc9c0a;"></i> All Products</a>
+          <a href="#"><i class="fas fa-users" style="margin-right: 8px; border: 1px solid #ffffff;border-radius: 50%; padding: .5rem; background-color: #fff; color: #cc9c0a;"></i> Clients Area</a>
+          <a href="#"><i class="fas fa-info-circle" style="margin-right: 8px; border: 1px solid #ffffff;border-radius: 50%; padding: .5rem; background-color: #fff; color: #cc9c0a;"></i> Info Cabin</a>
+          <a href="#"><i class="fas fa-headset" style="margin-right: 8px; border: 1px solid #ffffff;border-radius: 50%; padding: .5rem; background-color: #fff; color: #cc9c0a;"></i> Support Desk</a>
         </div>
         <div class="footer-col">
           <h3>About Us</h3>
           <p>
-            We love our work, yes that's the simplest way to describe why we have been thriving and 
-            serving our global clientele with satisfaction in our services. We Believe in togetherness 
+            We love our work, yes that's the simplest way to describe why we have been thriving and
+            serving our global clientele with satisfaction in our services. We Believe in togetherness
             and its our continuous effort to make the things better.
           </p>
-          <a href="#" style="color: #97db8e; font-weight: 600;">Know More →</a>
-          <p style="margin-top: 1.5rem;"><a href="#" style="color: #97db8e;">Donate Us</a></p>
+          <a href="#" style="color: #cc9c0a; font-weight: 600;">Know More →</a>
+          <p style="margin-top: 1.5rem;"><a href="#" style="color: #cc9c0a;">Donate Us</a></p>
         </div>
         <div class="footer-col">
-          <h3>We Ensure</h3>
-          <img src="https://iitprivatelimited.com/wp-content/uploads/2016/10/satisfaction_guarantee.png" alt="satisfaction guarantee" style="width: 140px; margin: 1rem 0;">
-          <p><a href="#" style="color: #97db8e;">or, Get 100% Cash Back.</a></p>
-          <h3 style="margin-top: 2rem;">Follow Us</h3>
+          <h3 style="margin-left: 20%;">We Ensure</h3>
+          <img src="https://iitprivatelimited.com/wp-content/uploads/2016/10/satisfaction_guarantee.png" alt="satisfaction guarantee" style="width: 250px; margin: 1rem 0;">
+          <p style="margin-left: 15%;"><a href="#" style="color: #cc9c0a">or, Get 100% Cash Back.</a></p>
+          <h3 style="margin-top: 2rem; margin-left: 25%;">Follow Us</h3>
           <div class="footer-social">
             <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
             <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
